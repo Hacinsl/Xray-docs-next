@@ -53,7 +53,7 @@ VLESS 的用户 ID，可以是任意小于 30 字节的字符串, 也可以是�
 
 你可以使用命令 `xray uuid -i "自定义字符串"` 生成自定义字符串所映射的的 UUID，也可以使用命令 `xray uuid` 生成随机的 UUID。
 
-> `encryption`: "none"
+> `encryption`: string
 
 [VLESS 加密](https://github.com/XTLS/Xray-core/pull/5067)设置。不能留空，禁用需显式设置为 `"none"`.
 

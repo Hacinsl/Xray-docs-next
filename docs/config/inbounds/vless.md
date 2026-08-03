@@ -14,7 +14,7 @@ VLESS 是一个无状态的轻量传输协议，它分为入站和出站两部�
     {
       // ...
       "protocol": "vless",
-      // [!code focus:17]
+      // [!code focus:18]
       "settings": {
         "users": [
           {
@@ -25,6 +25,7 @@ VLESS 是一个无状态的轻量传输协议，它分为入站和出站两部�
             "reverse": {}
           }
         ],
+        "flow": "",
         "decryption": "none",
         "fallbacks": [
           {
@@ -47,7 +48,11 @@ VLESS 必须配合传输安全层使用；只有当对端是 private 地址（�
 
 其中每一项是一个用户 [UserObject](#userobject)。
 
-> `decryption`: "none"
+> `flow`: string
+
+当 `users.flow` 为空字符串或不存在时，`flow` 将作为其默认值。当该值非空时会导致无法将 `users.flow` 设置为空以关闭流控。（因为空字符串会导致取到这里的值）
+
+> `decryption`: string
 
 [VLESS 加密](https://github.com/XTLS/Xray-core/pull/5067)设置。不能留空，禁用需显式设置为 `"none"`.
 

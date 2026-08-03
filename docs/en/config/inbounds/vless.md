@@ -14,7 +14,7 @@ Unlike [VMess](./vmess.md), VLESS does not depend on system time. The authentica
     {
       // ...
       "protocol": "vless",
-      // [!code focus:17]
+      // [!code focus:18]
       "settings": {
         "users": [
           {
@@ -25,6 +25,7 @@ Unlike [VMess](./vmess.md), VLESS does not depend on system time. The authentica
             "reverse": {}
           }
         ],
+        "flow": "",
         "decryption": "none",
         "fallbacks": [
           {
@@ -47,7 +48,11 @@ An array representing a group of users approved by the server.
 
 Each item is a user [UserObject](#userobject).
 
-> `decryption`: "none"
+> `flow`: string
+
+When `users.flow` is an empty string or does not exist, `flow` will be used as its default value. When this value is non-empty, it makes it impossible to set `users.flow` to empty to disable flow control (because an empty string will fall back to the value here).
+
+> `decryption`: string
 
 [VLESS Encryption](https://github.com/XTLS/Xray-core/pull/5067) settings. Cannot be left empty; to disable, explicitly set it to `"none"`.
 
