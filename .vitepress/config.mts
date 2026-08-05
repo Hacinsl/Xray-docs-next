@@ -50,7 +50,7 @@ export default defineConfig({
       light: "light-plus"
     },
 
-    attrs: { leftDelimiter: "{:" },
+    attrs: { left: "{:" },
 
     config(md) {
       md.use(MermaidMarkdown)
