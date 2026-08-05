@@ -97,7 +97,7 @@ When the target address is a domain name, this field controls how outbound conne
 
 - With `"AsIs"`, Xray does not specially handle the domain name. In the end it uses Go's built-in dialer directly. The priority is fixed to the RFC 6724 default and does not follow configurations such as `gai.conf`, so in practice IPv6 is usually preferred.
 - With any other value, Xray uses the Xray-core [built-in DNS server](../dns.md) for resolution. If there is no `DNSObject`, system DNS is used. If multiple IP addresses match, the core randomly picks one target IP.
-- `"IPv4"` means try IPv4 only. `"IPv4v6"` means try IPv4 or IPv6, but for dual-stack domains prefer IPv4. The same logic applies to the IPv6-first variants.
+- `"IPv4"` means resolve IPv4 only. `"IPv4v6"` means resolve IPv4 first and resolve IPv6 only if that lookup returns an error or no IP addresses. If IPv4 addresses are resolved but subsequent connection attempts fail, it does not fall back to IPv6. `"IPv6"` and `"IPv6v4"` work analogously, with the address-family order reversed.
 - When built-in DNS also sets `"queryStrategy"`, the actual behavior is the intersection of the two settings. Only IP types included in both are resolved. For example, `"queryStrategy": "UseIPv4"` together with `"domainStrategy": "UseIP"` behaves the same as `"domainStrategy": "UseIPv4"`.
 - When using a `"Use"` option, Xray falls back to `"AsIs"` if the resolution result does not match the requested family, such as a domain that only has IPv4 while using `UseIPv6`.
 - When using a `"Force"` option, the connection fails outright if the resolution result does not match the requested family.
@@ -276,7 +276,7 @@ When `type` is `int`, the value must be a decimal number.
 
 An RFC 8305 Happy Eyeballs implementation, TCP only. When the target is a domain name, it races the resolved addresses and chooses the first successful one. It only works when `Sockopt.domainStrategy` is not `AsIs`.
 
-Note that `UseIPv4v6` and `ForceIPv4v6` effectively reduce the usable list to IPv4 and only query IPv6 if IPv4 resolution fails. That is not recommended. Prefer `UseIP` or `ForceIP` together with `HappyEyeballs.interleave`.
+Note that `UseIPv4v6` and `ForceIPv4v6` effectively reduce the usable IP list to IPv4 and switch to resolving IPv6 only if IPv4 resolution returns an error or no IP addresses. Failure to connect over IPv4 does not trigger this fallback. This usage is not recommended. Prefer `UseIP` or `ForceIP` together with `HappyEyeballs.interleave`.
 
 ::: warning
 Do not use this feature together with this outbound's `targetStrategy`, because then `Sockopt` only sees the final IP after replacement.<br>

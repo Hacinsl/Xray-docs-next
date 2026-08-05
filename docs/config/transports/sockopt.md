@@ -101,7 +101,7 @@ Sockopt 用于配置底层网络行为。
 
 - 当使用 `"AsIs"` 时, Xray 不对域名进行特殊处理，到最后 Xray 将直接使用 go 自带的 Dial 发起连接，优先级固定为 RFC6724 的默认值(不会遵守 gai.conf 等配置) 通常来说为 IPv6 优先。
 - 当填写其他值时，将使用 Xray-core [内置 DNS 服务器](../dns.md) 服务器进行解析。若不存在DNSObject，则使用系统DNS。若有多个符合条件的IP地址时，核心会随机选择一个IP作为目标IP。
-- `"IPv4"` 代表尝试仅使用 IPv4 进行连接，`"IPv4v6"` 代表尝试使用 IPv4 或 IPv6 连接，但对于双栈域名，使用 IPv4。（v4v6 调换后同理，不再赘述）
+- `"IPv4"` 代表只解析 IPv4。`"IPv4v6"` 代表先解析 IPv4，仅当解析报错或没有返回 IP 时再解析 IPv6；如果已经解析出 IPv4，之后连接失败不会回退到 IPv6。`"IPv6"`、`"IPv6v4"` 同理，地址族顺序相反。
 - 当在内置DNS设置了 `"queryStrategy"` 后，实际行为将会与这个选项取并，只有都被包含的IP类型才会被解析，如 `"queryStrategy": "UseIPv4"` `"domainStrategy": "UseIP"`，实际上等同于 `"domainStrategy": "UseIPv4"`。
 - 当使用 `"Use"` 开头的选项时，若解析结果不符合要求（如，域名只有IPv4解析结果但使用了UseIPv6），则会回落回AsIs。
 - 当使用 `"Force"` 开头的选项时，若解析结果不符合要求，则该连接会无法建立。
@@ -282,7 +282,7 @@ PS: 如果有正常上网的域名流量被 AsIs 的 freedom 出站送过来，�
 
 RFC-8305 实现的 happyEyeballs，仅适用于 TCP。当目标为域名时对它们竞速并选择第一个成功的返回，仅当 `Sockopt.domainStrategy` 被设置为非 `AsIs` 时生效。
 
-注意：`UseIPv4v6` / `ForceIPv4v6` 会使可用的 IP 列表被缩减到仅剩 IPv4，仅查询失败时才会回退查询 IPv6。不推荐这么用。建议使用 UseIP / ForceIP 配合 `HappyEyeballs.interleave`。
+注意：`UseIPv4v6` / `ForceIPv4v6` 会使可用的 IP 列表被缩减到仅剩 IPv4，仅当 IPv4 解析报错或没有返回 IP 时才会改为解析 IPv6；IPv4 连接失败不会触发该回退。不推荐这么用。建议使用 UseIP / ForceIP 配合 `HappyEyeballs.interleave`。
 
 ::: warning
 使用这个功能时不要使用此出站的 `targetStrategy`，这会导致 `Sockopt` 只能看到被替换完毕的 IP。<br>
