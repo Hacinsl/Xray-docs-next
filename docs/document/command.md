@@ -111,7 +111,8 @@ xray run -config http+unix:///run/xray-config.sock/config.json
 
 - 工作目录（Working Directory）
 - [环境变量](../config/env.md#资源文件路径)中 `Xray.location.asset` 所指定的路径
-  :::
+
+:::
 
 ```bash
 xray run -dump
@@ -256,7 +257,8 @@ xray wg [-i "(base64.StdEncoding)"]
 
 - 工作目录（Working Directory）
 - [环境变量](../config/env.md#资源文件路径)中 `Xray.location.asset` 所指定的路径
-  :::
+
+:::
 
 ### xray mldsa65
 

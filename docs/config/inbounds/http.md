@@ -17,7 +17,8 @@ HTTP 协议。
 
 - `export http_proxy=http://127.0.0.1:8080/` (地址须改成你配置的 HTTP 入站代理地址)
 - `export https_proxy=$http_proxy`
-  :::
+
+:::
 
 ## InboundConfigurationObject
 

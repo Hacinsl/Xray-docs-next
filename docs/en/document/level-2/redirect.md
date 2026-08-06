@@ -62,7 +62,8 @@ PostDown = ip -6 rule del oif %i lookup <table>
 - Connections sent to this device `%i` / Connections sent to this `<IPv4/6>` / Connections marked with `fwmark` `<mark>`
 - Will be forwarded using WireGuard.
 - `%i` is a placeholder in the WireGuard configuration file, which represents the device name to be replaced at startup.
-  :::
+
+:::
 
 Save it.
 

@@ -63,7 +63,8 @@ PostDown = ip -6 rule del oif %i lookup <table>
 - 送入此设备 `%i` 的连接 / 送入此 `<IPv4/6>` 的连接 / `fwmark` 被标记为 `<mark>` 的连接
 - 将会使用 wireguard 进行转发
 - `%i` 是 wireguard 配置文件中的占位符，表示在启动时替换为这个设备的名称
-  :::
+
+:::
 
 保存
 

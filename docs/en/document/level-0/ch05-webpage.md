@@ -89,7 +89,8 @@ Now for the second question:
    If you are not using the username `vpsadmin`, please understand the meaning of the `“~”` symbol in this command (this relates to the content you will write in [Step 5]):
    - If you are a [non-root user], `“~”` is equivalent to `/home/username`.
    - If you are the [root user], `“~”` is equivalent to `/root`.
-     :::
+
+   :::
 
 4. Copy the content below completely into the file, then save (`ctrl+o`) and exit (`ctrl+x`).
 

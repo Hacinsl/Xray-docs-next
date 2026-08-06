@@ -111,7 +111,8 @@ When `-config` is not specified, Xray will attempt to load `config.json` from th
 
 - Working Directory
 - The path specified by `Xray.location.asset` in [Environment Variables](../config/env.md#resource-file-path)
-  :::
+
+:::
 
 ```bash
 xray run -dump
@@ -256,7 +257,8 @@ When `-config` is not specified, Xray will attempt to load `config.json` from th
 
 - Working Directory
 - The path specified by `Xray.location.asset` in [Environment Variables](../config/env.md#resource-file-path)
-  :::
+
+:::
 
 ### xray mldsa65
 

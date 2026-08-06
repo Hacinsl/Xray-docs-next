@@ -65,7 +65,8 @@ Vmess 的用户 ID，可以是任意小于 30 字节的字符串, 也可以是�
 
 - 写 `"id": "我爱🍉老师1314"`,
 - 或写 `"id": "5783a3e7-e373-51cd-8642-c83782b807c5"` (此 UUID 是 `我爱🍉老师1314` 的 UUID 映射)
-  :::
+
+:::
 
 其映射标准在 [VLESS UUID 映射标准：将自定义字符串映射为一个 UUIDv5](https://github.com/XTLS/Xray-core/issues/158)
 

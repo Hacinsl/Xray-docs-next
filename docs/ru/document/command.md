@@ -112,7 +112,8 @@ xray run -config http+unix:///run/xray-config.sock/config.json
 
 - Рабочий каталог (Working Directory)
 - Путь, указанный в переменной окружения `Xray.location.asset` в [переменных окружения](../config/env.md#путь-к-файлам-ресурсов)
-  :::
+
+:::
 
 ```bash
 xray run -dump
@@ -257,7 +258,8 @@ xray wg [-i "(base64.StdEncoding)"]
 
 - Рабочий каталог (Working Directory);
 - Путь, указанный в переменной окружения `Xray.location.asset` (см. [Переменные окружения](../config/env.md#путь-к-файлам-ресурсов)).
-  :::
+
+:::
 
 ### xray mldsa65
 

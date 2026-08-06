@@ -14,7 +14,8 @@ gRPC（HTTP/2）内置多路复用，不建议使用 gRPC 与 HTTP/2 时启用 m
 - gRPC 不支持指定 Host。请在出站代理地址中填写 **正确的域名** ，或在 `(x)tlsSettings` 中填写 `ServerName`，否则无法连接。
 - gRPC 不支持回落到其他服务。
 - gRPC 服务存在被主动探测的风险。建议使用 Caddy 或 Nginx 等反向代理工具，通过 Path 前置分流。
-  :::
+
+:::
 
 ::: tip
 如果您使用 Caddy 或 Nginx 等反向代理，请注意下列事项：
@@ -23,7 +24,8 @@ gRPC（HTTP/2）内置多路复用，不建议使用 gRPC 与 HTTP/2 时启用 m
 - 请使用 HTTP/2 或 h2c (Caddy)，grpc_pass (Nginx) 连接到 Xray。
 - 普通模式的 Path 为 `/${serviceName}/Tun`, Multi 模式为 `/${serviceName}/TunMulti`
 - 如果需要接收客户端 IP，可以通过由 Caddy / Nginx 发送 `X-Real-IP` header 来传递客户端 IP。
-  :::
+
+:::
 
 ::: tip
 如果你正在使用回落，请注意下列事项：
@@ -31,7 +33,8 @@ gRPC（HTTP/2）内置多路复用，不建议使用 gRPC 与 HTTP/2 时启用 m
 - 不建议回落到 gRPC，存在被主动探测的风险。
 - 请确认`h2` 位于 (x)tlsSettings.alpn 中的第一顺位，否则 gRPC（HTTP/2）可能无法完成 TLS 握手。
 - gRPC 无法通过进行 Path 分流。
-  :::
+
+:::
 
 ## GRPCObject
 

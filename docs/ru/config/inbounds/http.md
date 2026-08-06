@@ -17,7 +17,8 @@
 
 - `export http_proxy=http://127.0.0.1:8080/` (замените адрес на адрес вашего настроенного входящего HTTP-прокси)
 - `export https_proxy=$http_proxy`
-  :::
+
+:::
 
 ## InboundConfigurationObject
 
